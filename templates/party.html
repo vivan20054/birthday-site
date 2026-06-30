@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{ data.party['title'] }}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}" />
+  <style>
+    :root {
+      --accent: {{ data.party['accent_color'] }};
+      --secondary: {{ data.party['secondary_color'] }};
+    }
+  </style>
+</head>
+<body class="page-party {{ data.party['background_style'] }}">
+  <div class="floating floating-heart heart-1">❤</div>
+  <div class="floating floating-heart heart-2">❤</div>
+  <div class="floating floating-flower flower-1">✿</div>
+  <div class="floating floating-flower flower-2">❀</div>
+
+  <main class="party-shell">
+    <section class="party-hero">
+      <div class="badge badge-soft">For {{ visitor_name }}</div>
+      <h1>{{ data.party['title'] }}</h1>
+      <p class="lead">{{ data.party['subtitle'] }}</p>
+      <p class="intro-copy">{{ data.party['intro_text'] }}</p>
+      <div class="pill-row">
+        <span>Made with love by {{ data.party['created_by'] }}</span>
+        <span>Private birthday surprise</span>
+        <span>Warm memories inside</span>
+      </div>
+    </section>
+
+    <section class="messages-board">
+      <div class="section-heading">
+        <h2>Messages from your people</h2>
+        <p>Open each note and feel the love.</p>
+      </div>
+      <div class="message-cards">
+        {% for message in data.messages %}
+        <article class="wish-card">
+          <span class="wish-from">{{ message['sender_name'] }}</span>
+          <p>{{ message['message_text'] }}</p>
+        </article>
+        {% endfor %}
+        {% if not data.messages %}
+        <article class="wish-card">
+          <span class="wish-from">Someone special</span>
+          <p>You are celebrated, cherished, and deeply loved. Happy birthday.</p>
+        </article>
+        {% endif %}
+      </div>
+    </section>
+
+    <section class="gallery-section">
+      <div class="section-heading">
+        <h2>Special moments together</h2>
+        <p>Photos and videos your loved ones chose for you.</p>
+      </div>
+      <div class="memory-grid">
+        {% for item in data.media %}
+          {% if item['media_type'] == 'image' %}
+            <figure class="memory-card">
+              <img src="{{ url_for('static', filename='uploads/' + item['file_name']) }}" alt="{{ item['original_name'] }}" />
+            </figure>
+          {% else %}
+            <figure class="memory-card">
+              <video controls preload="metadata">
+                <source src="{{ url_for('static', filename='uploads/' + item['file_name']) }}" />
+              </video>
+            </figure>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </section>
+  </main>
+
+  <canvas id="confettiCanvas"></canvas>
+  <script src="{{ url_for('static', filename='js/party.js') }}"></script>
+</body>
+</html>

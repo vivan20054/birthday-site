@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Customize Birthday Party</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}" />
+</head>
+<body class="page-customize">
+  <div class="mesh mesh-1"></div>
+  <div class="mesh mesh-2"></div>
+  <main class="shell narrow">
+    <section class="hero-card form-card">
+      <div class="top-row">
+        <div>
+          <div class="badge">Birthday Party Builder</div>
+          <h1>Customize a warm, classy, Gen Z birthday experience.</h1>
+        </div>
+        <button type="button" class="btn btn-ghost" id="randomizeBtn">Randomize with AI vibe</button>
+      </div>
+
+      <form action="{{ url_for('create_party') }}" method="POST" enctype="multipart/form-data" id="partyForm">
+        <div class="form-grid">
+          <label>
+            <span>Birthday person name</span>
+            <input type="text" name="recipient_name" placeholder="Aarav / Emma / Your Bestie" required />
+          </label>
+          <label>
+            <span>Your name</span>
+            <input type="text" name="created_by" placeholder="Who is creating this surprise" required />
+          </label>
+          <label>
+            <span>Main title</span>
+            <input type="text" name="title" placeholder="Happy Birthday, My Favorite Person" required />
+          </label>
+          <label>
+            <span>Soft subtitle</span>
+            <input type="text" name="subtitle" placeholder="A little world made lovingly for you" />
+          </label>
+          <label class="full-width">
+            <span>Intro text</span>
+            <textarea name="intro_text" rows="3" placeholder="Write a short intro that appears on the party page."></textarea>
+          </label>
+          <label>
+            <span>Accent color</span>
+            <input type="color" name="accent_color" value="#d9778f" />
+          </label>
+          <label>
+            <span>Soft secondary color</span>
+            <input type="color" name="secondary_color" value="#f6d5de" />
+          </label>
+          <label>
+            <span>Background style</span>
+            <select name="background_style">
+              <option value="rose-glow">Rose Glow</option>
+              <option value="lavender-dream">Lavender Dream</option>
+              <option value="golden-hour">Golden Hour</option>
+              <option value="mint-bloom">Mint Bloom</option>
+            </select>
+          </label>
+          <label>
+            <span>Entry page prompt</span>
+            <input type="text" name="surprise_prompt" placeholder="Please enter your name to continue" />
+          </label>
+          <label class="full-width">
+            <span>Upload photos and videos</span>
+            <input type="file" name="media_files" accept="image/*,video/*" multiple />
+          </label>
+        </div>
+
+        <section class="message-section">
+          <div class="message-header">
+            <div>
+              <h2>Love messages</h2>
+              <p>Add as many wishes as you want from different people.</p>
+            </div>
+            <button type="button" class="btn btn-secondary" id="addMessageBtn">Add message</button>
+          </div>
+          <div id="messagesWrap">
+            <div class="message-row">
+              <input type="text" name="sender_name[]" placeholder="Sender name" required />
+              <textarea name="message_text[]" rows="3" placeholder="Write a loving message" required></textarea>
+            </div>
+          </div>
+        </section>
+
+        <div class="form-actions">
+          <button class="btn btn-primary" type="submit">Create party link</button>
+          <a class="btn btn-ghost" href="{{ url_for('home') }}">Back</a>
+        </div>
+      </form>
+    </section>
+  </main>
+  <script src="{{ url_for('static', filename='js/customize.js') }}"></script>
+</body>
+</html>

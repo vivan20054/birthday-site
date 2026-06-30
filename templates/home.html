@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quiet Entry | Birthday Surprise Studio</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}" />
+</head>
+<body class="page-home">
+  <div class="mesh mesh-1"></div>
+  <div class="mesh mesh-2"></div>
+  <main class="shell">
+    <section class="hero-card professional-card">
+      <div class="badge">Private Experience Builder</div>
+      <h1>Build a surprise birthday website that starts elegant and ends unforgettable.</h1>
+      <p class="lead">Create a disguised entry page, add heartfelt messages from multiple people, upload photos and videos, and share a personal party link in minutes.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="{{ url_for('customize') }}">Customize a Party</a>
+        <a class="btn btn-ghost" href="#how-it-works">How it works</a>
+      </div>
+      <div class="glass-stats">
+        <div><strong>Entry page</strong><span>Professional & subtle</span></div>
+        <div><strong>Celebration page</strong><span>Warm, modern, loving</span></div>
+        <div><strong>Memories</strong><span>Messages, photos, videos</span></div>
+      </div>
+    </section>
+
+    <section id="how-it-works" class="info-grid">
+      <article class="info-card">
+        <span>01</span>
+        <h3>Design the surprise</h3>
+        <p>Choose colors, mood, title, and intro. Or let the built-in AI-style randomizer generate a classy setup for you.</p>
+      </article>
+      <article class="info-card">
+        <span>02</span>
+        <h3>Collect love notes</h3>
+        <p>Add multiple messages from friends, siblings, cousins, partners, or anyone who wants to celebrate the birthday person.</p>
+      </article>
+      <article class="info-card">
+        <span>03</span>
+        <h3>Share the party link</h3>
+        <p>The recipient first sees a calm, professional-looking entry page, enters their name, and then the full surprise opens.</p>
+      </article>
+    </section>
+  </main>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Secure Guest Access</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}" />
+  <style>
+    :root {
+      --accent: {{ data.party['accent_color'] }};
+      --secondary: {{ data.party['secondary_color'] }};
+    }
+  </style>
+</head>
+<body class="page-entry">
+  <main class="shell slim">
+    {% if created %}
+      <div class="share-banner">Your party is ready. Share this link: <strong>{{ request.url_root[:-1] }}{{ url_for('party_entry', slug=data.party['slug']) }}</strong></div>
+    {% endif %}
+    <section class="hero-card professional-card entry-card">
+      <div class="badge">Guest Welcome</div>
+      <h1>{{ data.party['created_by'] }} has prepared a private digital experience.</h1>
+      <p class="lead">{{ data.party['surprise_prompt'] or 'Please enter your name to continue.' }}</p>
+      <form class="entry-form" action="{{ url_for('celebrate', slug=data.party['slug']) }}" method="GET">
+        <label>
+          <span>Full name</span>
+          <input name="guest_name" type="text" placeholder="Enter your name" required />
+        </label>
+        <button class="btn btn-primary" type="submit">Continue</button>
+      </form>
+      <p class="tiny-note">This entry page is intentionally minimal to keep the surprise hidden until the next step.</p>
+    </section>
+  </main>
+</body>
+</html>
